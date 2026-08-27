@@ -24,12 +24,26 @@ function isPast(value) {
   today.setHours(0, 0, 0, 0);
   return new Date(`${value}T12:00:00`) < today;
 }
+let news = read(newsKey, defaultNews);
+let matches = read(matchesKey, defaultMatches);
+async function syncPublicData() {
+  try {
+    const cloudNews = await window.cobrasCloud.load("news", news);
+    const cloudMatches = await window.cobrasCloud.load("matches", matches);
+    if (Array.isArray(cloudNews) && cloudNews.length) news = cloudNews;
+    if (Array.isArray(cloudMatches) && cloudMatches.length) matches = cloudMatches;
+    localStorage.setItem(newsKey, JSON.stringify(news));
+    localStorage.setItem(matchesKey, JSON.stringify(matches));
+  } catch (error) {
+    console.warn("Données cloud indisponibles, utilisation des données locales.", error);
+  }
+  renderNews();
+  renderMatches();
+}
 function renderNews() {
-  const news = read(newsKey, defaultNews);
   $("newsGrid").innerHTML = news.map((item) => `<article class="news-card"><span class="news-tag">${escapeHtml(item.category)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p><span class="date">${escapeHtml(item.date)}</span></article>`).join("");
 }
 function renderMatches() {
-  const matches = read(matchesKey, defaultMatches);
   const upcoming = matches.filter((match) => !isPast(match.date)).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3);
   const next = upcoming[0];
   $("nextMatchName").textContent = next ? `COBRAS vs. ${next.opponent.toUpperCase()}` : "AUCUN MATCH PROGRAMMÉ";
@@ -63,5 +77,4 @@ document.addEventListener("click", (event) => {
   smoothScrollTo(target);
   history.replaceState(null, "", link.getAttribute("href"));
 });
-renderNews();
-renderMatches();
+syncPublicData();
