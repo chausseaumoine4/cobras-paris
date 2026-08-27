@@ -6,6 +6,7 @@ const defaultMatches=[{id:1,date:"2025-09-14",opponent:"Meteors",venue:"Stade Ge
 let news=read(newsKey,defaultNews),matches=read(matchesKey,defaultMatches),users=read(usersKey,[{id:1,name:"Staff principal",email:"cobrasdeparis@yahoo.com",role:"Administrateur"}]),activities=read(activityKey,[]);
 const save=async()=>{localStorage.setItem(newsKey,JSON.stringify(news));localStorage.setItem(matchesKey,JSON.stringify(matches));localStorage.setItem(usersKey,JSON.stringify(users));localStorage.setItem(activityKey,JSON.stringify(activities));try{await Promise.all([window.cobrasCloud.save("news",news),window.cobrasCloud.save("matches",matches),window.cobrasCloud.save("users",users),window.cobrasCloud.save("activities",activities)])}catch(error){console.error("Synchronisation Supabase impossible.",error);toast("Synchronisation cloud impossible.")}};
 const toast=m=>{$("toast").textContent=m;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2800)};
+window.addEventListener("pageshow",()=>{$("loginEmail").value="";$("loginPassword").value=""});
 let installPrompt=null;
 window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();installPrompt=event;$("installStaff").hidden=false});
 $("installStaff").addEventListener("click",async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$("installStaff").hidden=true});

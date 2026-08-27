@@ -14,9 +14,9 @@
       <section id="loginView" class="staff-login">
         <p class="kicker">ESPACE PRIVÉ</p><h1>STAFF<br /><em>COBRAS.</em></h1>
         <p class="admin-muted">Connectez-vous pour publier des annonces et mettre à jour le site public.</p>
-        <form id="loginForm" class="staff-card">
-          <label>Email<input id="loginEmail" type="email" value="cobrasdeparis@yahoo.com" required /></label>
-          <label>Mot de passe<input id="loginPassword" type="password" placeholder="Mot de passe Supabase" required /></label>
+        <form id="loginForm" class="staff-card" autocomplete="off">
+          <label>Email<input id="loginEmail" name="staff-login-email" type="email" placeholder="cobrasdeparis@yahoo.com" autocomplete="off" required /></label>
+          <label>Mot de passe<input id="loginPassword" name="staff-login-password" type="password" placeholder="Mot de passe Supabase" autocomplete="new-password" required /></label>
           <button class="button button-primary full" type="submit">Se connecter →</button>
           <small class="demo-hint">Utilisez le compte Supabase créé pour le staff.</small>
         </form>
