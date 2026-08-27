@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="player-page">
+    <script>if(location.pathname.endsWith("/joueur.html")) location.replace("joueurs/");</script>
     <main class="player-shell">
       <div class="staff-topbar"><div class="brand staff-brand"><img class="brand-logo" src="cobras-logo.png" alt="Logo Cobras Paris" /><span><b>COBRAS</b><small>ESPACE JOUEURS</small></span></div><button id="playerLogout" class="text-link" hidden>Se dÃ©connecter</button></div>
       <section id="playerLogin" class="staff-login"><p class="kicker">ESPACE JOUEURS</p><h1>COBRA<br /><em>TEAM.</em></h1><p class="admin-muted">Retrouve tes matchs, tes entraÃ®nements, tes prÃ©sences et les discussions de ton Ã©quipe.</p><form id="playerLoginForm" class="staff-card" autocomplete="off"><label>Email<input id="playerEmail" type="email" required /></label><label>Mot de passe<input id="playerPassword" type="password" required /></label><button class="button button-primary full" type="submit">Se connecter â†’</button></form><form id="playerSignupForm" class="staff-card"><h3>CrÃ©er mon compte joueur</h3><label>Nom d'utilisateur<input id="signupName" required /></label><label>Email<input id="signupEmail" type="email" required /></label><label>Mot de passe<input id="signupPassword" type="password" minlength="8" required /></label><button class="button button-outline full" type="submit">CrÃ©er mon compte</button></form></section>
