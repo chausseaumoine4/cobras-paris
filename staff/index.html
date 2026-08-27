@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="fr">
   <head><base href="../" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Espace staff Â· Cobras Paris</title>
+    <title>Espace staff · Cobras Paris</title>
     <link rel="icon" type="image/png" href="cobras-logo.png?v=2" />
     <link rel="manifest" href="staff/manifest.json" />
     <link rel="stylesheet" href="styles.css" />
@@ -11,35 +11,35 @@
   <body class="staff-page">
     <script>if(location.pathname.endsWith("/staff.html")) location.replace("staff/");</script>
     <main class="staff-shell">
-      <div class="staff-topbar"><div class="brand staff-brand"><img class="brand-logo" src="cobras-logo.png" alt="Logo Cobras Paris" /><span><b>COBRAS</b><small>ESPACE STAFF</small></span></div><button id="installStaff" class="button button-outline small install-button" type="button">Installer lâ€™application</button></div>
+      <div class="staff-topbar"><div class="brand staff-brand"><img class="brand-logo" src="cobras-logo.png" alt="Logo Cobras Paris" /><span><b>COBRAS</b><small>ESPACE STAFF</small></span></div><button id="installStaff" class="button button-outline small install-button" type="button">Installer l’application</button></div>
       <section id="loginView" class="staff-login">
-        <p class="kicker">ESPACE PRIVÃ‰</p><h1>STAFF<br /><em>COBRAS.</em></h1>
-        <p class="admin-muted">Connectez-vous pour publier des annonces et mettre Ã  jour le site public.</p>
+        <p class="kicker">ESPACE PRIVÉ</p><h1>STAFF<br /><em>COBRAS.</em></h1>
+        <p class="admin-muted">Connectez-vous pour publier des annonces et mettre à jour le site public.</p>
         <form id="loginForm" class="staff-card" autocomplete="off">
           <label>Email<input id="loginEmail" name="staff-login-email" type="email" placeholder="cobrasdeparis@yahoo.com" autocomplete="off" required /></label>
           <label>Mot de passe<input id="loginPassword" name="staff-login-password" type="password" placeholder="Mot de passe Supabase" autocomplete="new-password" required /></label>
-          <button class="button button-primary full" type="submit">Se connecter â†’</button>
-          <small class="demo-hint">Utilisez le compte Supabase crÃ©Ã© pour le staff.</small>
+          <button class="button button-primary full" type="submit">Se connecter →</button>
+          <small class="demo-hint">Utilisez le compte Supabase créé pour le staff.</small>
         </form>
       </section>
       <section id="dashboardView" hidden>
-        <div class="dashboard-top"><div><p class="kicker">TABLEAU DE BORD</p><h1>GESTION<br /><em>COBRAS.</em></h1></div><button id="logoutButton" class="text-link">Se dÃ©connecter</button></div>
-        <div class="admin-stats"><div><b id="newsCount">0</b><span>ANNONCES PUBLIÃ‰ES</span></div><div><b id="matchCount">0</b><span>MATCHS PROGRAMMÃ‰S</span></div></div>
+        <div class="dashboard-top"><div><p class="kicker">TABLEAU DE BORD</p><h1>GESTION<br /><em>COBRAS.</em></h1></div><button id="logoutButton" class="text-link">Se déconnecter</button></div>
+        <div class="admin-stats"><div><b id="newsCount">0</b><span>ANNONCES PUBLIÉES</span></div><div><b id="matchCount">0</b><span>MATCHS PROGRAMMÉS</span></div></div>
         <div class="staff-grid">
-          <form id="newsForm" class="news-form staff-card"><h3>Ajouter une annonce</h3><label>Titre<input id="newsTitle" required /></label><label>CatÃ©gorie<select id="newsCategory"><option>Vie du club</option><option>Match</option><option>Recrutement</option><option>Ã‰vÃ©nement</option></select></label><label>RÃ©sumÃ©<textarea id="newsExcerpt" rows="3" required></textarea></label><button class="button button-primary full" type="submit">Publier lâ€™annonce +</button></form>
-          <form id="matchForm" class="news-form staff-card"><h3>Programmer un match</h3><label>Date<input id="matchDate" type="date" required /></label><label>Adversaire<input id="matchOpponent" required /></label><label>Lieu<input id="matchVenue" required /></label><label>Type<select id="matchType"><option>Ã€ domicile</option><option>Ã€ l'extÃ©rieur</option></select></label><div class="score-fields"><label>Score Cobras<input id="matchScoreHome" type="number" min="0" /></label><label>Score adversaire<input id="matchScoreAway" type="number" min="0" /></label></div><button class="button button-primary full" type="submit">Ajouter au calendrier +</button></form>
-          <form id="userForm" class="news-form staff-card"><h3>Ajouter un utilisateur</h3><label>Nom<input id="userName" required /></label><label>Email<input id="userEmail" type="email" required /></label><label>Mot de passe<input id="userPassword" type="password" minlength="8" required /></label><label>RÃ´le<select id="userRole"><option>Ã‰diteur</option><option>Administrateur</option></select></label><button class="button button-primary full" type="submit">CrÃ©er l'utilisateur +</button><p class="admin-help">Le mot de passe doit contenir au moins 8 caractÃ¨res.</p></form>
+          <form id="newsForm" class="news-form staff-card"><h3>Ajouter une annonce</h3><label>Titre<input id="newsTitle" required /></label><label>Catégorie<select id="newsCategory"><option>Vie du club</option><option>Match</option><option>Recrutement</option><option>Événement</option></select></label><label>Résumé<textarea id="newsExcerpt" rows="3" required></textarea></label><button class="button button-primary full" type="submit">Publier l’annonce +</button></form>
+          <form id="matchForm" class="news-form staff-card"><h3>Programmer un match</h3><label>Date<input id="matchDate" type="date" required /></label><label>Adversaire<input id="matchOpponent" required /></label><label>Lieu<input id="matchVenue" required /></label><label>Type<select id="matchType"><option>À domicile</option><option>À l'extérieur</option></select></label><div class="score-fields"><label>Score Cobras<input id="matchScoreHome" type="number" min="0" /></label><label>Score adversaire<input id="matchScoreAway" type="number" min="0" /></label></div><button class="button button-primary full" type="submit">Ajouter au calendrier +</button></form>
+          <form id="userForm" class="news-form staff-card"><h3>Ajouter un utilisateur</h3><label>Nom<input id="userName" required /></label><label>Email<input id="userEmail" type="email" required /></label><label>Mot de passe<input id="userPassword" type="password" minlength="8" required /></label><label>Rôle<select id="userRole"><option>Éditeur</option><option>Administrateur</option></select></label><button class="button button-primary full" type="submit">Créer l'utilisateur +</button><p class="admin-help">Le mot de passe doit contenir au moins 8 caractères.</p></form>
         </div>
-        <div class="admin-content"><h3>Annonces personnalisÃ©es</h3><div id="adminNewsList"></div></div>
-        <div class="admin-content"><h3>Matchs programmÃ©s</h3><div id="adminMatchList"></div></div>
-        <div class="admin-content"><h3>Utilisateurs privÃ©s</h3><div id="adminUserList"></div></div>
-        <div class="admin-content team-management"><h3>Gestion de lâ€™Ã©quipe</h3><div class="staff-grid">
-          <form id="roleForm" class="news-form staff-card"><h3>Passer entraÃ®neur</h3><label>Email du compte joueur<input id="coachEmail" type="email" required /></label><label>Mot de passe staff<input id="staffConfirmPassword" type="password" required /></label><button class="button button-primary full" type="submit">Valider le rÃ´le</button><p class="admin-help">Le mot de passe staff est demandÃ© pour confirmer lâ€™Ã©lÃ©vation.</p></form>
-          <form id="teamEventForm" class="news-form staff-card"><h3>Ajouter Ã  lâ€™agenda Ã©quipe</h3><label>Type<select id="teamEventKind"><option value="training">EntraÃ®nement privÃ©</option><option value="match">Match public</option></select></label><label>Titre<input id="teamEventTitle" required placeholder="EntraÃ®nement seniors" /></label><label>Adversaire <small>(match uniquement)</small><input id="teamEventOpponent" /></label><label>Date et heure<input id="teamEventDate" type="datetime-local" required /></label><label>Lieu<input id="teamEventLocation" /></label><button class="button button-primary full" type="submit">Ajouter lâ€™Ã©vÃ©nement +</button></form>
-          <form id="groupForm" class="news-form staff-card"><h3>CrÃ©er un groupe de chat</h3><label>Nom du groupe<input id="groupName" required placeholder="Seniors 2026" /></label><label>Email des membres<input id="groupMembers" placeholder="joueur@email.fr, autre@email.fr" /></label><button class="button button-primary full" type="submit">CrÃ©er le groupe +</button></form>
+        <div class="admin-content"><h3>Annonces personnalisées</h3><div id="adminNewsList"></div></div>
+        <div class="admin-content"><h3>Matchs programmés</h3><div id="adminMatchList"></div></div>
+        <div class="admin-content"><h3>Utilisateurs privés</h3><div id="adminUserList"></div></div>
+        <div class="admin-content team-management"><h3>Gestion de l’équipe</h3><div class="staff-grid">
+          <form id="roleForm" class="news-form staff-card"><h3>Passer entraîneur</h3><label>Email du compte joueur<input id="coachEmail" type="email" required /></label><label>Mot de passe staff<input id="staffConfirmPassword" type="password" required /></label><button class="button button-primary full" type="submit">Valider le rôle</button><p class="admin-help">Le mot de passe staff est demandé pour confirmer l’élévation.</p></form>
+          <form id="teamEventForm" class="news-form staff-card"><h3>Ajouter à l’agenda équipe</h3><label>Type<select id="teamEventKind"><option value="training">Entraînement privé</option><option value="match">Match public</option></select></label><label>Titre<input id="teamEventTitle" required placeholder="Entraînement seniors" /></label><label>Adversaire <small>(match uniquement)</small><input id="teamEventOpponent" /></label><label>Date et heure<input id="teamEventDate" type="datetime-local" required /></label><label>Lieu<input id="teamEventLocation" /></label><button class="button button-primary full" type="submit">Ajouter l’événement +</button></form>
+          <form id="groupForm" class="news-form staff-card"><h3>Créer un groupe de chat</h3><label>Nom du groupe<input id="groupName" required placeholder="Seniors 2026" /></label><label>Email des membres<input id="groupMembers" placeholder="joueur@email.fr, autre@email.fr" /></label><button class="button button-primary full" type="submit">Créer le groupe +</button></form>
         </div><div id="teamAccounts"></div></div>
-        <div class="admin-content"><h3>Outils de gestion</h3><div class="admin-tools"><button id="exportData" class="button button-outline small" type="button">Exporter les donnÃ©es â†“</button><label class="button button-outline small file-button">Importer une sauvegarde â†‘<input id="importData" type="file" accept="application/json" hidden /></label></div><p class="admin-help">Les donnÃ©es partagÃ©es avec le site public sont conservÃ©es dans ce navigateur.</p></div>
-        <div class="admin-content activity-panel"><div class="activity-heading"><h3>Journal des modifications</h3><span>Utilisateur Â· action Â· date</span></div><div id="activityLog"></div></div>
+        <div class="admin-content"><h3>Outils de gestion</h3><div class="admin-tools"><button id="exportData" class="button button-outline small" type="button">Exporter les données ↓</button><label class="button button-outline small file-button">Importer une sauvegarde ↑<input id="importData" type="file" accept="application/json" hidden /></label></div><p class="admin-help">Les données partagées avec le site public sont conservées dans ce navigateur.</p></div>
+        <div class="admin-content activity-panel"><div class="activity-heading"><h3>Journal des modifications</h3><span>Utilisateur · action · date</span></div><div id="activityLog"></div></div>
       </section>
     </main>
     <div id="toast" class="toast" role="status"></div>
