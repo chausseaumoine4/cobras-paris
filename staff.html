@@ -42,6 +42,6 @@
       </section>
     </main>
     <div id="toast" class="toast" role="status"></div>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js?v=3"></script><script src="staff.js?v=3"></script><script>if("serviceWorker" in navigator) navigator.serviceWorker.register("sw-staff.js?v=2");</script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js?v=3"></script><script src="staff.js?v=3"></script><script>if("serviceWorker" in navigator){navigator.serviceWorker.getRegistrations().then(registrations=>Promise.all(registrations.map(registration=>registration.unregister()))).then(()=>navigator.serviceWorker.register("sw-staff.js?v=3"));}</script>
   </body>
 </html>
