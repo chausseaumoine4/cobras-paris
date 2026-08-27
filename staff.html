@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Espace staff · Cobras Paris</title>
+    <link rel="icon" type="image/png" href="cobras-logo.png?v=2" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="staff-page">
+    <main class="staff-shell">
+      <a class="brand staff-brand" href="index.html"><img class="brand-logo" src="cobras-logo.png" alt="Logo Cobras Paris" /><span><b>COBRAS</b><small>RETOUR AU SITE PUBLIC</small></span></a>
+      <section id="loginView" class="staff-login">
+        <p class="kicker">ESPACE PRIVÉ</p><h1>STAFF<br /><em>COBRAS.</em></h1>
+        <p class="admin-muted">Connectez-vous pour publier des annonces et mettre à jour le site public.</p>
+        <form id="loginForm" class="staff-card">
+          <label>Email<input id="loginEmail" type="email" value="staff@cobras-paris.fr" required /></label>
+          <label>Mot de passe<input id="loginPassword" type="password" value="cobras2025" required /></label>
+          <button class="button button-primary full" type="submit">Se connecter →</button>
+          <small class="demo-hint">Démo : staff@cobras-paris.fr · cobras2025</small>
+        </form>
+      </section>
+      <section id="dashboardView" hidden>
+        <div class="dashboard-top"><div><p class="kicker">TABLEAU DE BORD</p><h1>GESTION<br /><em>COBRAS.</em></h1></div><button id="logoutButton" class="text-link">Se déconnecter</button></div>
+        <div class="admin-stats"><div><b id="newsCount">0</b><span>ANNONCES PUBLIÉES</span></div><div><b id="matchCount">0</b><span>MATCHS PROGRAMMÉS</span></div></div>
+        <div class="staff-grid">
+          <form id="newsForm" class="news-form staff-card"><h3>Ajouter une annonce</h3><label>Titre<input id="newsTitle" required /></label><label>Catégorie<select id="newsCategory"><option>Vie du club</option><option>Match</option><option>Recrutement</option><option>Événement</option></select></label><label>Résumé<textarea id="newsExcerpt" rows="3" required></textarea></label><button class="button button-primary full" type="submit">Publier l’annonce +</button></form>
+          <form id="matchForm" class="news-form staff-card"><h3>Programmer un match</h3><label>Date<input id="matchDate" type="date" required /></label><label>Adversaire<input id="matchOpponent" required /></label><label>Lieu<input id="matchVenue" required /></label><label>Type<select id="matchType"><option>À domicile</option><option>À l'extérieur</option></select></label><div class="score-fields"><label>Score Cobras<input id="matchScoreHome" type="number" min="0" /></label><label>Score adversaire<input id="matchScoreAway" type="number" min="0" /></label></div><button class="button button-primary full" type="submit">Ajouter au calendrier +</button></form>
+          <form id="userForm" class="news-form staff-card"><h3>Ajouter un utilisateur</h3><label>Nom<input id="userName" required /></label><label>Email<input id="userEmail" type="email" required /></label><label>Rôle<select id="userRole"><option>Éditeur</option><option>Administrateur</option></select></label><button class="button button-primary full" type="submit">Créer l'utilisateur +</button></form>
+        </div>
+        <div class="admin-content"><h3>Annonces personnalisées</h3><div id="adminNewsList"></div></div>
+        <div class="admin-content"><h3>Matchs programmés</h3><div id="adminMatchList"></div></div>
+        <div class="admin-content"><h3>Utilisateurs privés</h3><div id="adminUserList"></div></div>
+        <div class="admin-content"><h3>Outils de gestion</h3><div class="admin-tools"><button id="exportData" class="button button-outline small" type="button">Exporter les données ↓</button><label class="button button-outline small file-button">Importer une sauvegarde ↑<input id="importData" type="file" accept="application/json" hidden /></label></div><p class="admin-help">Les données partagées avec le site public sont conservées dans ce navigateur.</p></div>
+        <div class="admin-content activity-panel"><div class="activity-heading"><h3>Journal des modifications</h3><span>Utilisateur · action · date</span></div><div id="activityLog"></div></div>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status"></div>
+    <script src="staff.js"></script>
+  </body>
+</html>

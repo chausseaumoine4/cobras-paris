@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S'inscrire · Cobras Paris</title>
+    <link rel="icon" type="image/png" href="cobras-logo.png?v=2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="registration-page">
+    <header class="site-header">
+      <a class="brand" href="index.html#accueil" aria-label="Retour à l'accueil Cobras Paris"><img class="brand-logo" src="cobras-logo.png" alt="Logo Cobras Paris" /><span><b>COBRAS</b><small>PARIS · FOOT US</small></span></a>
+      <a class="text-link" href="index.html#club">Retour au site <span>←</span></a>
+    </header>
+    <main class="registration-main">
+      <section class="registration-copy"><p class="kicker">RECRUTEMENT OUVERT · SAISON 2025—2026</p><h1>ENTRE DANS<br /><em>L'ARÈNE.</em></h1><p>Débutant, confirmé, curieux ou déjà passionné : remplis ce formulaire et le staff des Cobras te répondra avec les prochaines dates d'essai et toutes les informations utiles.</p><div class="registration-points"><span>✓ Aucun niveau requis</span><span>✓ Essai encadré par le staff</span><span>✓ Seniors, jeunes et flag football</span></div></section>
+      <section class="registration-card"><p class="kicker">PREMIER CONTACT</p><h2>ON SE<br /><em>PARLE ?</em></h2><form id="registrationForm"><label>Prénom et nom<input id="registrationName" required placeholder="Ton nom" /></label><label>Email<input id="registrationEmail" type="email" required placeholder="ton@email.fr" /></label><label>Téléphone <small>(facultatif)</small><input id="registrationPhone" type="tel" placeholder="06 00 00 00 00" /></label><label>Je souhaite découvrir<select id="registrationInterest"><option>Une séance d'essai</option><option>L'équipe seniors</option><option>Les équipes jeunes</option><option>Le flag football</option><option>Un partenariat</option></select></label><label>Message<textarea id="registrationMessage" rows="4" placeholder="Parle-nous un peu de toi…"></textarea></label><button class="button button-primary full" type="submit">Envoyer ma demande <span>→</span></button><p class="form-note">Le bouton ouvrira votre application email pour envoyer la demande à cobrasdeparis@yahoo.com.</p></form><div id="registrationSuccess" class="registration-success" hidden><strong>Demande préparée.</strong><p>Votre application email va s'ouvrir avec le message adressé au staff.</p><a class="text-link" href="index.html#accueil">Retour à l'accueil <span>→</span></a></div></section>
+    </main>
+    <footer><a class="brand" href="index.html#accueil"><img class="brand-logo" src="cobras-logo.png" alt="Logo Cobras Paris" /><span><b>COBRAS</b><small>PARIS · FOOT US</small></span></a><span>© 2025 Cobras de Paris</span></footer>
+    <script>
+      document.getElementById("registrationForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = document.getElementById("registrationName").value.trim();
+        const email = document.getElementById("registrationEmail").value.trim();
+        const phone = document.getElementById("registrationPhone").value.trim() || "Non renseigné";
+        const interest = document.getElementById("registrationInterest").value;
+        const message = document.getElementById("registrationMessage").value.trim() || "Aucun message";
+        const subject = encodeURIComponent(`Inscription Cobras Paris · ${name}`);
+        const body = encodeURIComponent(`Nom : ${name}\nEmail : ${email}\nTéléphone : ${phone}\nIntérêt : ${interest}\n\nMessage :\n${message}`);
+        document.getElementById("registrationForm").hidden = true;
+        document.getElementById("registrationSuccess").hidden = false;
+        window.location.href = `mailto:cobrasdeparis@yahoo.com?subject=${subject}&body=${body}`;
+      });
+    </script>
+  </body>
+</html>
