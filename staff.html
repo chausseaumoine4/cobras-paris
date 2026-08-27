@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Espace staff · Cobras Paris</title>
     <link rel="icon" type="image/png" href="cobras-logo.png?v=2" />
+    <link rel="manifest" href="manifest-staff.json" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="staff-page">
@@ -36,6 +37,6 @@
       </section>
     </main>
     <div id="toast" class="toast" role="status"></div>
-    <script src="staff.js"></script>
+    <script src="staff.js"></script><script>if("serviceWorker" in navigator) navigator.serviceWorker.register("sw-staff.js");</script>
   </body>
 </html>
