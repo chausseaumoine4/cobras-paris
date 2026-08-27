@@ -8,9 +8,8 @@ const save=async()=>{localStorage.setItem(newsKey,JSON.stringify(news));localSto
 const toast=m=>{$("toast").textContent=m;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2800)};
 window.addEventListener("pageshow",()=>{$("loginEmail").value="";$("loginPassword").value=""});
 let installPrompt=null;
-window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();installPrompt=event;$("installStaff").hidden=false});
-$("installStaff").addEventListener("click",async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$("installStaff").hidden=true});
-window.addEventListener("appinstalled",()=>{$("installStaff").hidden=true;toast("Application staff installée.")});
+window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();installPrompt=event});
+$("installStaff").addEventListener("click",async()=>{if(!installPrompt)return toast("Ouvre le menu du navigateur puis choisis Installer l’application.");installPrompt.prompt();await installPrompt.userChoice;installPrompt=null});
 const past=v=>new Date(`${v}T12:00:00`)<new Date(new Date().setHours(0,0,0,0));
 function log(action){activities.unshift({id:Date.now(),user:"Staff principal",action,date:new Date().toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"short"})});activities=activities.slice(0,40)}
 function render(){ $("newsCount").textContent=news.length;$("matchCount").textContent=matches.length;$("adminNewsList").innerHTML=news.map(n=>`<div class="admin-news-item"><span>${esc(n.title)}</span>${n.id>3?`<button data-delete-news="${n.id}">Supprimer</button>`:""}</div>`).join("");$("adminMatchList").innerHTML=matches.map(m=>`<div class="admin-match-item"><span>${esc(m.date)} · Cobras vs ${esc(m.opponent)}</span><button data-delete-match="${m.id}">Supprimer</button></div>`).join("");$("adminUserList").innerHTML=users.map(u=>`<div class="admin-user-item"><span><b>${esc(u.name)}</b><small>${esc(u.email)} · ${esc(u.role)}</small></span>${u.id===1?"":`<button data-delete-user="${u.id}">Supprimer</button>`}</div>`).join("");$("activityLog").innerHTML=activities.length?activities.map(a=>`<div class="activity-item"><span><b>${esc(a.user)}</b> · ${esc(a.action)}</span><time>${esc(a.date)}</time></div>`).join(""):'<p class="admin-empty">Aucune modification enregistrée.</p>'}
