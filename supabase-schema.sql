@@ -99,6 +99,11 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
 
+insert into public.profiles (id, display_name, email, role)
+select id, coalesce(raw_user_meta_data->>'display_name', split_part(email, '@', 1)), email, 'player'
+from auth.users
+on conflict (id) do update set email = excluded.email;
+
 alter table public.profiles enable row level security;
 alter table public.team_events enable row level security;
 alter table public.attendance enable row level security;
@@ -121,3 +126,25 @@ create policy "Members read memberships" on public.chat_members for select to au
 create policy "Coaches manage memberships" on public.chat_members for all to authenticated using (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('coach','admin'))) with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('coach','admin')));
 create policy "Members read messages" on public.chat_messages for select to authenticated using (exists (select 1 from public.chat_members m where m.group_id = chat_messages.group_id and m.user_id = auth.uid()));
 create policy "Members send messages" on public.chat_messages for insert to authenticated with check (author_id = auth.uid() and exists (select 1 from public.chat_members m where m.group_id = chat_messages.group_id and m.user_id = auth.uid()));
+
+alter table public.profiles add column if not exists email text;
+update public.profiles p set email = u.email from auth.users u where u.id = p.id and p.email is null;
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer set search_path = public
+as $$
+begin
+  insert into public.profiles (id, display_name, email, role)
+  values (new.id, coalesce(new.raw_user_meta_data->>'display_name', split_part(new.email, '@', 1)), new.email, 'player')
+  on conflict (id) do update set email = excluded.email;
+  return new;
+end;
+$$;
+drop policy if exists "Admins manage profiles" on public.profiles;
+create policy "Admins manage profiles" on public.profiles for update to authenticated
+  using (exists (select 1 from public.profiles me where me.id = auth.uid() and me.role = 'admin'))
+  with check (true);
+drop policy if exists "Coaches create events" on public.team_events;
+create policy "Coaches create events" on public.team_events for insert to authenticated
+  with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('coach','admin')));
