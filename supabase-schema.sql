@@ -136,7 +136,8 @@ security definer set search_path = public
 as $$
 begin
   insert into public.profiles (id, display_name, email, role)
-  values (new.id, coalesce(new.raw_user_meta_data->>'display_name', split_part(new.email, '@', 1)), new.email, 'player')
+  values (new.id, coalesce(new.raw_user_meta_data->>'display_name', split_part(new.email, '@', 1)), new.email,
+    case when coalesce(new.raw_user_meta_data->>'app_role', 'player') = 'staff' then 'admin' else 'player' end)
   on conflict (id) do update set email = excluded.email;
   return new;
 end;
