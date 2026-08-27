@@ -31,5 +31,4 @@ drop policy if exists "Coaches create events" on public.team_events;
 create policy "Coaches create events" on public.team_events for insert to authenticated
 with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('coach','admin')));
 
--- Remplace cette adresse par celle du compte staff administrateur.
-update public.profiles set role = 'admin' where email = 'REMPLACE-MOI';
+update public.profiles set role = 'admin' where email = 'estebandhm.arty@gmail.com';
