@@ -29,6 +29,15 @@ with check (true);
 
 drop policy if exists "Coaches create events" on public.team_events;
 create policy "Coaches create events" on public.team_events for insert to authenticated
-with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('coach','admin')));
+with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'coach'));
+
+drop policy if exists "Coaches create groups" on public.chat_groups;
+create policy "Coaches create groups" on public.chat_groups for insert to authenticated
+with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'coach'));
+
+drop policy if exists "Coaches manage memberships" on public.chat_members;
+create policy "Coaches manage memberships" on public.chat_members for all to authenticated
+using (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'coach'))
+with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'coach'));
 
 update public.profiles set role = 'admin' where email = 'estebandhm.arty@gmail.com';

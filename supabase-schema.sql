@@ -116,14 +116,14 @@ create policy "Users create own profile" on public.profiles for insert to authen
 create policy "Users update own profile" on public.profiles for update to authenticated using (id = auth.uid()) with check (id = auth.uid());
 create policy "Signed in users read events" on public.team_events for select to authenticated using (true);
 create policy "Public can read matches" on public.team_events for select to anon using (kind = 'match');
-create policy "Coaches create events" on public.team_events for insert to authenticated with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('coach','admin')));
+create policy "Coaches create events" on public.team_events for insert to authenticated with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'coach'));
 create policy "Members read attendance" on public.attendance for select to authenticated using (user_id = auth.uid() or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('coach','admin')));
 create policy "Players set own attendance" on public.attendance for insert to authenticated with check (user_id = auth.uid());
 create policy "Players update own attendance" on public.attendance for update to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid());
 create policy "Members read groups" on public.chat_groups for select to authenticated using (exists (select 1 from public.chat_members m where m.group_id = id and m.user_id = auth.uid()));
-create policy "Coaches create groups" on public.chat_groups for insert to authenticated with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('coach','admin')));
+create policy "Coaches create groups" on public.chat_groups for insert to authenticated with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'coach'));
 create policy "Members read memberships" on public.chat_members for select to authenticated using (user_id = auth.uid() or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('coach','admin')));
-create policy "Coaches manage memberships" on public.chat_members for all to authenticated using (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('coach','admin'))) with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('coach','admin')));
+create policy "Coaches manage memberships" on public.chat_members for all to authenticated using (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'coach')) with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'coach'));
 create policy "Members read messages" on public.chat_messages for select to authenticated using (exists (select 1 from public.chat_members m where m.group_id = chat_messages.group_id and m.user_id = auth.uid()));
 create policy "Members send messages" on public.chat_messages for insert to authenticated with check (author_id = auth.uid() and exists (select 1 from public.chat_members m where m.group_id = chat_messages.group_id and m.user_id = auth.uid()));
 
